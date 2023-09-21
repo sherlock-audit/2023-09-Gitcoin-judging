@@ -14,7 +14,7 @@ from github.GithubException import (
 token = os.environ.get("GITHUB_TOKEN")
 github = Github(token)
 
-exception_filenames = [".data", ".git", ".github", "README.md", "Audit_Report.pdf", "comments.csv"]
+exception_filenames = [".data", ".git", ".github", "README.md", "Audit_Report.pdf", "comments.csv", ".gitignore"]
 
 def github_retry_on_rate_limit(func):
     @wraps(func)

@@ -1,6 +1,6 @@
 import os
 
-exception_filenames = [".data", ".git", ".github", "README.md", "Audit_Report.pdf", "comments.csv"]
+exception_filenames = [".data", ".git", ".github", "README.md", "Audit_Report.pdf", "comments.csv", ".gitignore"]
 
 def main():
     added_files = os.environ.get("ADDED_FILES")

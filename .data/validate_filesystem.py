@@ -4,7 +4,7 @@ import csv
 
 total_issues = None
 comment_filename = "comments.csv"
-exception_filenames = [".data", ".git", ".github", "README.md", "Audit_Report.pdf", ".gitkeep", comment_filename]
+exception_filenames = [".data", ".git", ".github", "README.md", "Audit_Report.pdf", ".gitkeep", ".gitignore", comment_filename]
 
 def consume_comment_file():
     with open(comment_filename) as f:

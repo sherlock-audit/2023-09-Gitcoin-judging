@@ -108,6 +108,8 @@ issue_number,comment
 896,"no impact"
 897,"pool manager's fault"
 319,"pool manager's fault to _distribute rejected milestone"
+071,"pool manager's fault to _distribute rejected milestone"
+182,"expected behavior"
 908,"only pool manager can _distribute, it would be pool manager's fault"
 094,"invalid"
 092,"invalid"
@@ -150,3 +152,5 @@ issue_number,comment
 
 640,"Invalid. Expected behavior. NATIVE tokens are collected as fee."
 219,"Invalid. Expected behavior. NATIVE tokens are collected as fee."
+
+056,"pool manager is trusted to not behave maliciously over the pool"

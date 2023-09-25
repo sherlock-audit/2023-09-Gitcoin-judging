@@ -34,3 +34,21 @@ zksync CREAT3 and clone
 
 006-M
 recipient.proposalBid > poolAmount revert
+
+
+007-H
+create3 anchor register address
+
+
+008-H
+merkle root empty
+
+012-H
+if (recipient.proposalBid > poolAmount) revert NOT_ENOUGH_FUNDS();
+
+013-H
+similar to 012-H, but different location
+
+---------
+
+403, DonationVotingMerkleDistributionBaseStrategy _allocte access control

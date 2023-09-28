@@ -1,12 +1,3 @@
-001-L
-
-Valid low, should be fixed. DoS could be avoided by sending extra 1wei of NATIVE.
-#074, #101 provides demonstration of fund locking because of this and no refund,
-but still low because only 1wei will be lost each call if to workaround this.
-
-002-L
-
-Informational. User' fault if he sends excessive token.
 
 002-H
 setPoolActive
@@ -18,20 +9,19 @@ fee on transfer
 001-H
 High. Unexpected fund loss. front run allocate with register
 
-003-M
-useRegistryAnchor
-Medium. Core function bricks with high possibility. No fund loss.
 
 003-H
 125.md
 High. Fund loss because of infinite vote.
 
+004-M
+useRegistryAnchor
+Medium. Core function bricks with high possibility. No fund loss.
+
 005-H
 614,260 "also identified 003-H, should submit separatly"
 High. voiceCreditsCastToRecipient Accounting error.
 
-004-M
-Arguable Medium. blacklist receiver.
 
 005-M
 zksync CREAT3 and clone
@@ -44,11 +34,6 @@ recipient.proposalBid > poolAmount revert
 create3 anchor register address
 
 
-008-H
-merkle root empty
-
-012-H
-if (recipient.proposalBid > poolAmount) revert NOT_ENOUGH_FUNDS();
 
 013-H
 similar to 012-H, but different location
@@ -66,16 +51,13 @@ Erc20 zero transfer revert
 submitUpcomingMilestone access control
 
 019-M
-poolAmount updates qv
+last vote determine the status
 
 020-M
-qv reviewing issue
+re-register resets states to pending
 
 021-M
 funding during distribution
-
-022-M
-qv reviewing issue status
 
 024-M
 allowedTokens address(0)
@@ -83,7 +65,8 @@ allowedTokens address(0)
 025-M
 RFP Committee register check
 
-027-M
+026-M
+registration and allocation time overlap
 qv time overlap
 
 028-M
@@ -126,6 +109,19 @@ time overlap
 047-M
 left
 
+
+
+
+049-M
+zksync CREATE3
+
+050-M
+zksync clone
+
+051-M
+DonationVotingMerkleDistribution bitmap corruption
+medium, no fund loss
+
 ---------
 
 403, DonationVotingMerkleDistributionBaseStrategy _allocte access control
@@ -138,7 +134,7 @@ left
 low, bypassing of fee is an acceptable risk
 
 002
-invalid, very close to 377, but there is logic error in the submition and the fix is misleading
+invalid, very close to #150, but there is logic error in the submition and the fix is misleading
 
 003
 invalid, Allo.sol is not meant to hold funds
@@ -146,21 +142,17 @@ invalid, Allo.sol is not meant to hold funds
 004
 low, no fund lose, only incompatible with NATIVE token, should consider to fix
 
-005
+005 ^
 "low, pool manager's fault to _distribute rejected milestone, should consider to fix"
 
 006
-"invalid, using ai generated report will lower your issue ratio and you will be ineligible for payouts"
+ai generated
 
-007
+007 ^
 low, rebase token
 
-008
+008 ^
 excess eth refund
-
-009
-pay fee from allo
-allo is not meant to hold funds
 
 010
 merkletree alloc for others
@@ -174,24 +166,39 @@ invalid, front run initializer
 013
 anchor payable execute
 
-014
+014 ^
 remove allocator
 
 015
 low, directly fund pool lost token, should fix
 
-016
-invalid, DonatingVotingMerkleDistributionBaseStrategy is abstract
-
-
-017
-no withdraw native eth
-
-018
+018 * 
 upgrade gap
 
-019
+019 ^
 double spending eth
 
-020
+020 ^
 metadata not stored
+
+021 ^
+low
+
+023 *
+invalid, according to sherlock\'s rule
+
+024 *^
+invalid, QVBaseStrategy are designed to distribute once, bring sponsor to check
+
+025 *^
+merkle root empty
+manager's fault, better to fix
+
+026 *^
+low/info, rare case, zero transfer revert token
+
+029 *^
+invalid, revert in __BaseStrategy_init
+
+
+#510, #308, #468, #706, #170, #752, #076, #723, #755, #106, #005

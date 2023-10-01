@@ -101,7 +101,7 @@ def process_directory(repo, path):
 
     repo_items = [
         x
-        for x in repo.get_contents(path)
+        for x in repo.get_contents(path, "prelim")
         if x.name not in exception_filenames
     ]
     for item in repo_items:
@@ -115,7 +115,7 @@ def process_directory(repo, path):
         if item.type == "dir":
             closed = any(x in item.name.lower() for x in ["low", "false", "invalid"])
             # If it's a directory, we have some duplicate issues
-            files = list(repo.get_contents(item.path))
+            files = list(repo.get_contents(item.path, "prelim"))
             dirs = [x for x in files if x.type == 'dir']
             files = [x for x in files if x.type != 'dir' and x.name not in [".gitkeep"]]
             for dir in dirs:
